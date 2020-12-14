@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  TextInput,
+  Image,
+  StyleSheet,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import api from '../../service/api';
 
 import {RectButton} from 'react-native-gesture-handler';
+import user from '../../assets/icons/user.png';
 
 const SingUp: React.FC = () => {
   const navigation = useNavigation();
@@ -28,36 +36,39 @@ const SingUp: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Name</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setName(text)}
-        value={name}
-      />
+    <ScrollView>
+      <View style={styles.container}>
+        <Image source={user} style={styles.image} />
+        <Text style={styles.label}>Name</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setName(text)}
+          value={name}
+        />
 
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-        keyboardType={'email-address'}
-        textContentType={'emailAddress'}
-      />
+        <Text style={styles.label}>Email</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          keyboardType={'email-address'}
+          textContentType={'emailAddress'}
+        />
 
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-        textContentType={'password'}
-        secureTextEntry={true}
-      />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          textContentType={'password'}
+          secureTextEntry={true}
+        />
 
-      <RectButton style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>SingIn</Text>
-      </RectButton>
-    </View>
+        <RectButton style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>SingIn</Text>
+        </RectButton>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -67,6 +78,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f0f5fc',
+  },
+  image: {
+    width: '60%',
+    resizeMode: 'contain',
+    marginBottom: -30,
   },
   label: {
     color: '#484848',
@@ -91,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 6,
-    marginTop: 20,
+    marginVertical: 20,
   },
   buttonText: {
     fontSize: 16,

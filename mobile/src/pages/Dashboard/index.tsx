@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import {useAuth} from '../../contexts/auth';
+
+import unlock from '../../assets/icons/unlock.png';
 
 const Dashboard: React.FC = () => {
   const {signOut, user} = useAuth();
@@ -12,6 +14,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={unlock} style={styles.image} />
       <Text style={styles.welcome}>Welcome,</Text>
       <Text style={styles.user}>{user?.name}</Text>
 
@@ -28,15 +31,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  image: {
+    width: '60%',
+    resizeMode: 'contain',
+  },
   welcome: {
     fontSize: 50,
     color: '#27B4FD',
     alignSelf: 'flex-start',
     paddingHorizontal: '10%',
+    marginTop: -25,
   },
   user: {
     fontSize: 40,
     color: '#484848',
+    alignSelf: 'flex-end',
+    paddingHorizontal: '10%',
   },
   button: {
     width: '90%',
@@ -45,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 6,
-    marginTop: 40,
+    marginTop: 45,
   },
   buttonText: {
     fontSize: 16,

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, Image, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {RectButton} from 'react-native-gesture-handler';
 import {useAuth} from '../../contexts/auth';
+
+import lock from '../../assets/icons/lock.png';
 
 const SignIn: React.FC = () => {
   const navigation = useNavigation();
@@ -21,6 +23,7 @@ const SignIn: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={lock} style={styles.image} />
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={styles.input}
@@ -56,6 +59,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f0f5fc',
+  },
+  image: {
+    width: '60%',
+    resizeMode: 'contain',
   },
   label: {
     color: '#484848',
