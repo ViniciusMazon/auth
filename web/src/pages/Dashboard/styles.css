@@ -1,0 +1,32 @@
+#Dashboard {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Dashboard .content {
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#Dashboard h1 {
+  font-size: 5rem;
+  font-family: 'Arial', sans-serif;
+  color: #27b4fd;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+
+#Dashboard h2 {
+  font-size: 4rem;
+  font-family: 'Arial', sans-serif;
+  color: #484848;
+  align-self: flex-end;
+  padding-left: 10px;
+}
