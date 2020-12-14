@@ -1,7 +1,14 @@
 import 'dotenv/config';
+import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-export default (request, response, next) => {
+declare module 'express' {
+  export interface Request {
+    userId?: string;
+  }
+}
+
+export default (request: Request, response: Response, next: NextFunction) => {
   const authHeader = request.headers.authorization;
   if (!authHeader) {
     return response.status(401).json({ message: 'Token not provided' });
@@ -9,7 +16,7 @@ export default (request, response, next) => {
 
   try {
     const [, token] = authHeader.split(' ');
-    const payload = jwt.verify(token, process.env.SECRET);
+    const payload: any = jwt.verify(token, process.env.SECRET as string);
 
     request.userId = payload.userId;
 
