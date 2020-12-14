@@ -4,6 +4,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
 
+import user from '../../assets/icons/user.png';
 import './styles.css';
 
 export default function SingUp() {
@@ -44,6 +45,7 @@ export default function SingUp() {
           onClick={handleNavigateBack}
         />
 
+        <img src={user} className="top-image" />
         <h1>Sing Up</h1>
 
         <div className="input-group">

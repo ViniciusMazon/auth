@@ -11,6 +11,11 @@ h1 {
   margin-bottom: 4rem;
 }
 
+.top-image {
+  width: 20rem;
+  margin-bottom: 20px;
+}
+
 input {
   height: 4.5rem;
   width: 30rem;

@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth';
 
+import lock from '../../assets/icons/lock.png';
 import './styles.css';
 
 export default function SignIn() {
@@ -22,6 +23,7 @@ export default function SignIn() {
   return (
     <div id="SingIn">
       <form className="content" onSubmit={handleSubmit}>
+        <img src={lock} className="top-image" />
         <h1>Sing In</h1>
 
         <div className="input-group">
