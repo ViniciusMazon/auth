@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+
 import {RectButton} from 'react-native-gesture-handler';
-import {useAuth} from '../../contexts/auth';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,12 +26,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     padding: 9,
   },
-  link: {
-    fontSize: 16,
-    textDecorationLine: 'underline',
-    color: '#08a8f8',
-    marginVertical: 10,
-  },
   button: {
     width: '90%',
     height: 50,
@@ -48,29 +41,29 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignIn: React.FC = () => {
-  const navigation = useNavigation();
-
-  const {signed, signIn} = useAuth();
+const SingUp: React.FC = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  console.log(signed);
-
-  function handleSignIn() {
+  function handleSubmit() {
     const data = {
+      name,
       email,
       password,
     };
-    signIn();
-  }
-
-  function handleNavigateToSingUp() {
-    navigation.navigate('SingUp');
+    console.log(data);
   }
 
   return (
     <View style={styles.container}>
+      <Text style={styles.label}>Name</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setName(text)}
+        value={name}
+      />
+
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={styles.input}
@@ -89,15 +82,11 @@ const SignIn: React.FC = () => {
         secureTextEntry={true}
       />
 
-      <Text style={styles.link} onPress={handleNavigateToSingUp}>
-        Don't have an account? Sing up
-      </Text>
-
-      <RectButton style={styles.button} onPress={handleSignIn}>
+      <RectButton style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>SingIn</Text>
       </RectButton>
     </View>
   );
 };
 
-export default SignIn;
+export default SingUp;
