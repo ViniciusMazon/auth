@@ -1,10 +1,11 @@
-import User from "../models/User";
+import User from '../models/User';
 
 class UserController {
   async store(request, response) {
-    const { email, password } = request.body;
+    const { name, email, password } = request.body;
 
     const user = await User.create({
+      name,
       email,
       password,
     });

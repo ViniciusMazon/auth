@@ -6,13 +6,13 @@ import User from '../models/User';
 class SessionController {
   async store(request, response) {
     const { email, password } = request.body;
-    const user = await User.findOne({ email });
+    const userData = await User.findOne({ email });
 
-    if (!user) {
+    if (!userData) {
       return response.status(400).json({ message: 'User not found' });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.passwordHash);
+    const isPasswordCorrect = await bcrypt.compare(password, userData.passwordHash);
     if (!isPasswordCorrect) {
       return response
         .status(401)
@@ -20,9 +20,13 @@ class SessionController {
     }
 
     return response.status(200).json({
-      token: `Bearer ${jwt.sign({ userId: user._id }, process.env.SECRET, {
+      token: `Bearer ${jwt.sign({ userId: userData._id }, process.env.SECRET, {
         expiresIn: '7d',
       })}`,
+      user: {
+        name: userData.name,
+        email: userData.email,
+      },
     });
   }
 }
