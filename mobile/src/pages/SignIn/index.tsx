@@ -11,8 +11,6 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  console.log(signed);
-
   function handleSignIn() {
     signIn(email, password);
   }
