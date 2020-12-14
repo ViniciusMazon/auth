@@ -3,6 +3,25 @@ import {View, Button, Text, StyleSheet} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import {useAuth} from '../../contexts/auth';
 
+const Dashboard: React.FC = () => {
+  const {signOut, user} = useAuth();
+
+  function handleSignOut() {
+    signOut();
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>Welcome,</Text>
+      <Text style={styles.user}>{user?.name}</Text>
+
+      <RectButton style={styles.button} onPress={handleSignOut}>
+        <Text style={styles.buttonText}>Sing out</Text>
+      </RectButton>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -33,24 +52,5 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
 });
-
-const Dashboard: React.FC = () => {
-  const {signOut, user} = useAuth();
-
-  function handleSignOut() {
-    signOut();
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome,</Text>
-      <Text style={styles.user}>{user?.name}</Text>
-
-      <RectButton style={styles.button} onPress={handleSignOut}>
-        <Text style={styles.buttonText}>Sing out</Text>
-      </RectButton>
-    </View>
-  );
-};
 
 export default Dashboard;

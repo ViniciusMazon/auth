@@ -1,7 +1,65 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import api from '../../service/api';
 
 import {RectButton} from 'react-native-gesture-handler';
+
+const SingUp: React.FC = () => {
+  const navigation = useNavigation();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function handleSubmit() {
+    if (name === '' || email === '' || password === '') {
+      return;
+    }
+
+    const data = {
+      name,
+      email,
+      password,
+    };
+
+    await api.post('/sing-up', data);
+    navigation.navigate('SignIn');
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.label}>Name</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setName(text)}
+        value={name}
+      />
+
+      <Text style={styles.label}>Email</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setEmail(text)}
+        value={email}
+        keyboardType={'email-address'}
+        textContentType={'emailAddress'}
+      />
+
+      <Text style={styles.label}>Password</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setPassword(text)}
+        value={password}
+        textContentType={'password'}
+        secureTextEntry={true}
+      />
+
+      <RectButton style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.buttonText}>SingIn</Text>
+      </RectButton>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -40,53 +98,5 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
 });
-
-const SingUp: React.FC = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  function handleSubmit() {
-    const data = {
-      name,
-      email,
-      password,
-    };
-    console.log(data);
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Name</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setName(text)}
-        value={name}
-      />
-
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-        keyboardType={'email-address'}
-        textContentType={'emailAddress'}
-      />
-
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-        textContentType={'password'}
-        secureTextEntry={true}
-      />
-
-      <RectButton style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>SingIn</Text>
-      </RectButton>
-    </View>
-  );
-};
 
 export default SingUp;

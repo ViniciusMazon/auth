@@ -4,6 +4,54 @@ import {useNavigation} from '@react-navigation/native';
 import {RectButton} from 'react-native-gesture-handler';
 import {useAuth} from '../../contexts/auth';
 
+const SignIn: React.FC = () => {
+  const navigation = useNavigation();
+
+  const {signed, signIn} = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  console.log(signed);
+
+  function handleSignIn() {
+    signIn(email, password);
+  }
+
+  function handleNavigateToSingUp() {
+    navigation.navigate('SingUp');
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.label}>Email</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setEmail(text)}
+        value={email}
+        keyboardType={'email-address'}
+        textContentType={'emailAddress'}
+      />
+
+      <Text style={styles.label}>Password</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setPassword(text)}
+        value={password}
+        textContentType={'password'}
+        secureTextEntry={true}
+      />
+
+      <Text style={styles.link} onPress={handleNavigateToSingUp}>
+        Don't have an account? Sing up
+      </Text>
+
+      <RectButton style={styles.button} onPress={handleSignIn}>
+        <Text style={styles.buttonText}>SingIn</Text>
+      </RectButton>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -47,57 +95,5 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
 });
-
-const SignIn: React.FC = () => {
-  const navigation = useNavigation();
-
-  const {signed, signIn} = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  console.log(signed);
-
-  function handleSignIn() {
-    const data = {
-      email,
-      password,
-    };
-    signIn();
-  }
-
-  function handleNavigateToSingUp() {
-    navigation.navigate('SingUp');
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-        keyboardType={'email-address'}
-        textContentType={'emailAddress'}
-      />
-
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-        textContentType={'password'}
-        secureTextEntry={true}
-      />
-
-      <Text style={styles.link} onPress={handleNavigateToSingUp}>
-        Don't have an account? Sing up
-      </Text>
-
-      <RectButton style={styles.button} onPress={handleSignIn}>
-        <Text style={styles.buttonText}>SingIn</Text>
-      </RectButton>
-    </View>
-  );
-};
 
 export default SignIn;

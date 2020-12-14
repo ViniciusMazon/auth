@@ -1,6 +1,5 @@
 import React, {useState, useEffect, createContext, useContext} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import * as auth from '../service/auth';
 import api from '../service/api';
 
 interface User {
@@ -12,7 +11,7 @@ interface AuthContextData {
   signed: boolean;
   user: User | null;
   loading: boolean;
-  signIn(): Promise<void>;
+  signIn(email: string, password: string): Promise<void>;
   signOut(): void;
 }
 
@@ -27,26 +26,28 @@ export const AuthProvider: React.FC = ({children}) => {
       const storageUser = await AsyncStorage.getItem('@RNAuth:user');
       const storageToken = await AsyncStorage.getItem('@RNAuth:token');
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
       if (storageUser && storageToken) {
         setUser(JSON.parse(storageUser));
-        api.defaults.headers['Authorization'] = `Bearer ${storageToken}`;
+        api.defaults.headers['Authorization'] = `${storageToken}`;
       }
     }
+
     loadStorageData();
     setLoading(false);
   }, []);
 
-  async function signIn() {
-    const response = await auth.singIn();
+  async function signIn(email: string, password: string) {
+    const response = await api.post('/sing-in', {email, password});
 
-    setUser(response.user);
+    setUser(response.data.user);
 
-    api.defaults.headers['Authorization'] = `Bearer ${response.token}`;
+    api.defaults.headers['Authorization'] = `${response.data.token}`;
 
-    await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
-    await AsyncStorage.setItem('@RNAuth:token', response.token);
+    await AsyncStorage.setItem(
+      '@RNAuth:user',
+      JSON.stringify(response.data.user),
+    );
+    await AsyncStorage.setItem('@RNAuth:token', response.data.token);
   }
 
   function signOut() {
