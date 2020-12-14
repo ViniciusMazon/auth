@@ -11,9 +11,11 @@
 <p align="center">
 	<img alt="GitHub" src="">
 </p>
+</br>
 <p align="center">
-  <img alt="Auth" src="docs/mobile.png" width="65%">
+  <img alt="Auth" src="docs/mobile.png" width="30%">
 </p>
+
 
 
 
@@ -44,7 +46,7 @@ O Auth é um modelo para implementação do **JWT** utilizando NodeJS e **gerenc
 Clone o repositório:
 
 ```bash
-git clone 
+git clone https://github.com/ViniciusMazon/auth.git
 ```
 
 Instale as dependência rodando, individualmente em cada diretório (api, web e mobile), o comando: 
@@ -64,6 +66,8 @@ const api = axios.create({
 
 Página da RocketSeat com [Configuração do ambiente para React Native](https://react-native.rocketseat.dev).
 
+Dentro do diretório da API, suba o container rodando `docker-compose up -d`
+
 Rode o projeto utilizando o comando ``yarn dev`` para API, ``yarn start`` para a Web `yarn react-native run-android` para o Mobile.
 
 
@@ -71,7 +75,7 @@ Rode o projeto utilizando o comando ``yarn dev`` para API, ``yarn start`` para a
 ## 🖖🏻 Como contribuir
 
 - Faça um fork desse repositório;
-- Clone o repositório em sua máquina: ``
+- Clone o repositório em sua máquina: `https://github.com/ViniciusMazon/auth.git`
 - Cria uma branch com a sua feature: `git checkout -b minha-feature`;
 - Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
 - Faça push para a sua branch: `git push origin minha-feature`.
