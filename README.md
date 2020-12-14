@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Auth" title="Auth" src="docs/logo.png" />
+    <img alt="Auth" title="Auth" src="docs/logo.png"  width="20%"/>
 </h1>
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -11,10 +11,13 @@
 <p align="center">
 	<img alt="GitHub" src="">
 </p>
+
 </br>
+
 <p align="center">
   <img alt="Auth" src="docs/mobile.png" width="30%">
 </p>
+
 
 
 
