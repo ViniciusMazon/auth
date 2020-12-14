@@ -1,0 +1,35 @@
+#SingIn {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#SingIn .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#SingIn .input-group p {
+  font-size: 1.6rem;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 8px;
+}
+
+#SingIn .input-group input:focus {
+  border-color: #00a9fd;
+}
+
+#SingIn a {
+  font-size: 1.6rem;
+  font-family: 'Arial', sans-serif;
+  color: #08a8f8;
+  align-self: center;
+
+  margin: 10px 0 10px 0;
+}
